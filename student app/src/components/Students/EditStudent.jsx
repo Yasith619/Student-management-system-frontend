@@ -1,7 +1,9 @@
 import React from "react";
 function EditStudent(){
     return(
-       <div>Edit</div>
+       <div>
+         
+       </div>
     )
 }
 export default EditStudent;

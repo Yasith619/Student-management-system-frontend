@@ -6,7 +6,6 @@ import Subjects from "./Pages/Subjects";
 import Semesters from "./Pages/Semesters";
 import Marks from "./Pages/Marks";
 import AddStudent from "./components/Students/AddStudent";
-import StudentList from "./components/Students/StudentList";
 import EditStudent from "./components/Students/EditStudent";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { PiStudent } from "react-icons/pi";
@@ -78,8 +77,7 @@ function App() {
         <Route path="/Semesters" element={<Semesters />}></Route>
         <Route path="/Marks" element={<Marks />}></Route>
         <Route path="/AddStudent" element={<AddStudent />}></Route>
-        <Route path="/StudentList" element={<StudentList />}></Route>
-        <Route path="/EditStudent" element={< EditStudent/>}></Route>
+        <Route path="/EditStudent/:StudentID" element={< EditStudent/>}></Route>
       </Routes>
 
     </div>

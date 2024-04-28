@@ -1,7 +1,14 @@
 import React from "react";
 function AddStudent(){
+
+
+
     return(
-        <div>add student</div>
+        <div>
+            
+
+            
+        </div>
     )
 }
 export default AddStudent;
