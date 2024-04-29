@@ -40,7 +40,7 @@ function Students() {
 
                 <div className="inline-flex items-center ">
                     <IoMdPersonAdd className="text-3xl" />
-                    <Link to="/AddStudent"><h3 className="px-3">Add Student</h3></Link>
+                    <Link to="/AddStudent"><h3 className="px-3 ">Add Student</h3></Link>
                 </div>
 
                 <div className="inline-flex items-center">
@@ -92,7 +92,7 @@ function Students() {
                                 </tr>
                             )): (
                                 <tr>
-                                <td className="px-6 py-4 whitespace-nowrap ">No data or Server was disconented !</td>
+                                <td className="px-6 py-4 whitespace-nowrap ">No data !</td>
                             </tr>
                             )
                         }
