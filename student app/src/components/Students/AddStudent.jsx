@@ -1,7 +1,47 @@
 import React from "react";
+import { useState } from "react";
+import axios from "axios";
+
 function AddStudent() {
 
 
+
+
+    const [StudentID, setStudentID] = useState("")
+    const [StudentName, setStudentName] = useState("")
+    const [Gender, setGender] = useState("")
+    const [Birthday, setBirthday] = useState("")
+    const [Address, setAddress] = useState("")
+    const [Email, setEmail] = useState("")
+    const [PhoneNumber, setPhoneNumber] = useState("")
+    const [AcadamicYear, setAcadamicYear] = useState("")
+
+ // Send student data to backend
+
+    function sendData(e) {
+        e.preventDefault();
+
+        const studentData = {
+            StudentID,
+            StudentName,
+            Gender,
+            Birthday,
+            Address,
+            Email,
+            PhoneNumber,
+            AcadamicYear
+        }
+
+        axios.post('http://localhost:3000/Api/Students/add', studentData)
+            .then(function (res) {
+                console.log(res)
+                alert('Student added Succesfuly!')
+            }).catch(function (error) {
+                console.log(error)
+                alert('Student canot add !')
+            })
+    }
+    
 
     return (
 
@@ -11,36 +51,54 @@ function AddStudent() {
                 <section className="mb-6">
                     <h1 className="font-sans text-lg font-medium text-center">Add a New Student</h1>
                 </section>
-                <form action="">
+                <form onSubmit={sendData}>
                     <div className="grid grid-cols-2 gap-6">
                         <section className="divide-y divide-gray-200">
                             <h2 >Personal details </h2>
                             <div>
                                 <label className="text-sm text-gray-700 block  font-medium">ID</label>
-                                <input type="text" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
-                             focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter Student ID" />
+                                <input id="StudentID" type="text" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
+                             focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter Student ID"
+                                    onChange={(e) => {
+                                        setStudentID(e.target.value)
+                                    }}
+                                />
                             </div>
 
                             <div>
                                 <label className="block  text-gray-700  font-medium" >Full Name</label>
-                                <input type="text" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 
-                            block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter Full Name" />
+                                <input id="StudentName" type="text" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 
+                            block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter Full Name"
+                                    onChange={(e) => {
+                                        setStudentName(e.target.value)
+                                    }}
+                                />
                             </div>
 
                             <div>
-                                <label className="block  text-gray-700  font-medium">Gender</label>
-                                <select className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
-                             focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" id="">
+                                <label className="block  text-gray-700  font-medium">Gender
+                                    <select className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
+                                     focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" id="Gender"
+                                        onChange={(e) => {
+                                            setGender(e.target.value)
+                                        }}
+                                    >
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </label>
 
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
+
                             </div>
 
                             <div>
                                 <label className="block  text-gray-700  font-medium">Birthday</label>
                                 <input type="date" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
-                             focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" id="" />
+                             focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" id="Birthday"
+                                    onChange={(e) => {
+                                        setBirthday(e.target.value)
+                                    }}
+                                />
                             </div>
 
                         </section>
@@ -49,20 +107,32 @@ function AddStudent() {
                             <h2>Contact deatils</h2>
                             <div>
                                 <label className="block  text-gray-700  font-medium" >Addres</label>
-                                <input type="text" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
-                         focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter Address" />
+                                <input id="Address" type="text" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
+                         focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter Address"
+                                    onChange={(e) => {
+                                        setAddress(e.target.value)
+                                    }}
+                                />
                             </div>
 
                             <div>
                                 <label className="block  text-gray-700  font-medium">Email</label>
-                                <input type="email" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
-                         focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" id="" placeholder="kamal@gmail.com" />
+                                <input id="Email" type="email" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
+                         focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"  placeholder="kamal@gmail.com"
+                                    onChange={(e) => {
+                                        setEmail(e.target.value)
+                                    }}
+                                />
                             </div>
 
                             <div>
                                 <label className="block  text-gray-700  font-medium">Phone Number</label>
-                                <input type="text" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
-                         focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter Phone Number" />
+                                <input id="PhoneNumber" type="text" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
+                         focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter Phone Number"
+                                    onChange={(e) => {
+                                        setPhoneNumber(e.target.value)
+                                    }}
+                                />
                             </div>
 
                         </section>
@@ -70,20 +140,26 @@ function AddStudent() {
                             <h2 className="">Other details</h2>
                             <div>
                                 <label className="block  text-gray-700  font-medium">Academic Year</label>
-                                <input type="text" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
-                             focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter Academic Year" />
+                                <input id="AcademicYear" type="text" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
+                             focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter Academic Year"
+                                    onChange={(e) => {
+                                        setAcadamicYear(e.target.value)
+                                    }}
+                                />
                             </div>
+
                         </section>
 
 
                     </div>
-                </form>
-                <div className=" mt-6 flex justify-center">
-                    <div>
-                        <button type="submit" className="py-2 px-8
+                    <div className=" mt-6 flex justify-center">
+                        <div>
+                            <button type="submit" className="py-2 px-8
                          bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50">Save</button>
+                        </div>
                     </div>
-                </div>
+                </form>
+
             </div>
         </div>
     )
