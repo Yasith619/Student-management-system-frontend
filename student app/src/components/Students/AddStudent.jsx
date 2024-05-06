@@ -1,6 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
+
 
 function AddStudent() {
 
@@ -9,14 +12,17 @@ function AddStudent() {
 
     const [StudentID, setStudentID] = useState("")
     const [StudentName, setStudentName] = useState("")
-    const [Gender, setGender] = useState("")
+    const [Gender, setGender] = useState('')
     const [Birthday, setBirthday] = useState("")
     const [Address, setAddress] = useState("")
     const [Email, setEmail] = useState("")
     const [PhoneNumber, setPhoneNumber] = useState("")
     const [AcadamicYear, setAcadamicYear] = useState("")
+    const navigate = useNavigate();
 
  // Send student data to backend
+    console.log(Gender)
+    console.log(StudentName)
 
     function sendData(e) {
         e.preventDefault();
@@ -31,17 +37,21 @@ function AddStudent() {
             PhoneNumber,
             AcadamicYear
         }
-
+        
         axios.post('http://localhost:3000/Api/Students/add', studentData)
             .then(function (res) {
+                navigate('/Students')
                 console.log(res)
-                alert('Student added Succesfuly!')
+                toast.success("Student added Succesfuly!")
             }).catch(function (error) {
                 console.log(error)
-                alert('Student canot add !')
+                //alert('Student canot add !')
+                toast.warning('Student canot add!')
             })
     }
+ 
     
+
 
     return (
 
@@ -57,7 +67,7 @@ function AddStudent() {
                             <h2 >Personal details </h2>
                             <div>
                                 <label className="text-sm text-gray-700 block  font-medium">ID</label>
-                                <input id="StudentID" type="text" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
+                                <input required  id="StudentID" type="text" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
                              focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter Student ID"
                                     onChange={(e) => {
                                         setStudentID(e.target.value)
@@ -67,7 +77,7 @@ function AddStudent() {
 
                             <div>
                                 <label className="block  text-gray-700  font-medium" >Full Name</label>
-                                <input id="StudentName" type="text" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 
+                                <input required id="StudentName" type="text" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 
                             block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter Full Name"
                                     onChange={(e) => {
                                         setStudentName(e.target.value)
@@ -93,7 +103,7 @@ function AddStudent() {
 
                             <div>
                                 <label className="block  text-gray-700  font-medium">Birthday</label>
-                                <input type="date" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
+                                <input required type="date" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
                              focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" id="Birthday"
                                     onChange={(e) => {
                                         setBirthday(e.target.value)
@@ -107,7 +117,7 @@ function AddStudent() {
                             <h2>Contact deatils</h2>
                             <div>
                                 <label className="block  text-gray-700  font-medium" >Addres</label>
-                                <input id="Address" type="text" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
+                                <input required maxLength={35} id="Address" type="text" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
                          focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter Address"
                                     onChange={(e) => {
                                         setAddress(e.target.value)
@@ -117,7 +127,7 @@ function AddStudent() {
 
                             <div>
                                 <label className="block  text-gray-700  font-medium">Email</label>
-                                <input id="Email" type="email" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
+                                <input required id="Email" type="email" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
                          focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"  placeholder="kamal@gmail.com"
                                     onChange={(e) => {
                                         setEmail(e.target.value)
@@ -127,7 +137,7 @@ function AddStudent() {
 
                             <div>
                                 <label className="block  text-gray-700  font-medium">Phone Number</label>
-                                <input id="PhoneNumber" type="text" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
+                                <input required minLength={10} id="PhoneNumber" type="text" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
                          focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter Phone Number"
                                     onChange={(e) => {
                                         setPhoneNumber(e.target.value)
@@ -140,7 +150,7 @@ function AddStudent() {
                             <h2 className="">Other details</h2>
                             <div>
                                 <label className="block  text-gray-700  font-medium">Academic Year</label>
-                                <input id="AcademicYear" type="text" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
+                                <input required  id="AcademicYear" type="text"  className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
                              focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter Academic Year"
                                     onChange={(e) => {
                                         setAcadamicYear(e.target.value)

@@ -7,6 +7,7 @@ import Semesters from "./Pages/Semesters";
 import Marks from "./Pages/Marks";
 import AddStudent from "./components/Students/AddStudent";
 import EditStudent from "./components/Students/EditStudent";
+import StudentDetail from "./components/Students/StudentDetail";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { PiStudent } from "react-icons/pi";
 import { IoHomeOutline } from "react-icons/io5";
@@ -15,6 +16,8 @@ import { RiCalendarEventLine } from "react-icons/ri";
 import { LuGraduationCap } from "react-icons/lu";
 import { VscGraph } from "react-icons/vsc";
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -25,7 +28,7 @@ function App() {
      <div>  
       <div class="flex">
       <div>
-        <div className={`p-8  h-screen bg-menu-color shadow-lg duration-700 ${open ? "w-60" : "w-20"}  relative`}>
+        <div className={`p-8 h-dvh  bg-menu-color shadow-lg duration-700 ${open ? "w-60" : "w-20"}  relative`}>
           <div className="flex items-center justify-center h-16 bg-menu-color">
             <TfiMenuAlt className="text-menu-text-color absolute top-2 right-5 h-10 w-10 cursor-pointer" onClick={() => setOpen(!open)} />
             <span class={`text-menu-text-color text-lg  font-semibold ${!open && "scale-0"}`}>Dashboard</span>
@@ -77,8 +80,26 @@ function App() {
         <Route path="/Semesters" element={<Semesters />}></Route>
         <Route path="/Marks" element={<Marks />}></Route>
         <Route path="/AddStudent" element={<AddStudent />}></Route>
-        <Route path="/EditStudent/:StudentID" element={< EditStudent/>}></Route>
+        <Route path="/Edit/:StudentID" element={< EditStudent/>}></Route>
+        <Route path="/Detail/:StudentID" element={<StudentDetail />}></Route> 
       </Routes>
+
+
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          transition:Bounce
+        />
+
+
 
     </div>
      </div>

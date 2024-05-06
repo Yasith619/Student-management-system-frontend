@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { IoMdPersonAdd } from "react-icons/io";
-import { MdPersonSearch } from "react-icons/md";
+import { GrFormView } from "react-icons/gr";
 import { MdEdit } from "react-icons/md";
 import { MdDeleteForever } from "react-icons/md";
 import { useState, useEffect } from "react";
@@ -10,7 +10,11 @@ import axios from "axios";
 
 function Students() {
 
+
     const [students, setStudents] = useState([]);
+    const [query, setQuery] = useState("")
+    const [filteredItems, setFilteredItems] = useState([]);
+    
 
     useEffect(function () {
         function getStudentsList() {
@@ -25,7 +29,19 @@ function Students() {
         getStudentsList()
     }, []);
 
-
+//filter by name
+    useEffect(function () {
+        if (query.length) {
+            const filterUsers = students.filter((student) => {
+                return (student.StudentName).toLowerCase().includes(query.toLowerCase());
+            });
+            setFilteredItems(filterUsers)
+        } else {
+            setFilteredItems([])
+        }
+    }, [query]);
+  
+       
 
     return (
         <div className="w-full " >
@@ -34,7 +50,7 @@ function Students() {
                 <div className="max-w-lg">
                     <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">STUDENTS</h3>
                     <p className="text-gray-600 mt-2">
-                    Here, you can effortlessly add, search, edit, and update Student personal information with ease.
+                        Here, you can effortlessly add, search, edit, and update Student personal information with ease.
                     </p>
                 </div>
 
@@ -44,13 +60,16 @@ function Students() {
                 </div>
 
                 <div className="inline-flex items-center">
-                    <form action="">
-                        <div className="inline-flex items-center">
-                            <MdPersonSearch className="text-4xl" />
-                            <input type="text" placeholder="Search Student by ID" 
-                            className="p-2 border-2 rounded-full border-neutral-500 " />
-                        </div>
-                    </form>
+
+                    <div className="inline-flex space-x-2 items-center">
+                        <input type="search" placeholder="  Search Student Name"
+                            className="px-3 border-2 rounded-full border-neutral-500 "
+                            onChange={(e)=>{
+                                setQuery(e.target.value)
+                            }}
+                        />
+                    </div>
+
                 </div>
             </div>
 
@@ -67,39 +86,57 @@ function Students() {
                                 <th className="py-3 px-6">Email</th>
                                 <th className="py-3 px-6">Phone Number</th>
                                 <th className="py-3 px-6">Academic Year</th>
-                                <th className="py-3 px-3">Action</th>
+                                <th className="py-3 px-8">Action</th>
                             </tr>
                         </thead>
                         <tbody className="text-gray-600 divide-y">
-                          {
-                             students.length >0 ? students.map(student => (
-                                <tr key={student.StudentID}>
-                                    <td className="px-6 py-4 whitespace-nowrap">{student.StudentID}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{student.StudentName}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{student.Gender}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{student.Birthday}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{student.Address}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{student.Email}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{student.PhoneNumber}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{student.AcadamicYear}</td>
-                                    <td>
-                                        <div  className="inline-flex items-center">
-                                        <Link to={`/EditStudent${student.StudentID}`}><MdEdit className="text-2xl " /></Link>
-                                        <button className="px-5" type="button">< MdDeleteForever className="text-2xl "/></button>
-                                        </div>
-                                        
-                                    </td>
-                                </tr>
-                            )): (
-                                <tr>
-                                <td className="px-6 py-4 whitespace-nowrap ">No data !</td>
-                            </tr>
-                            )
-                        }
-                    </tbody>
+                            {
+                                filteredItems.length >0 ? filteredItems.map((student) =>
+                                <tr >
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.StudentID}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.StudentName}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.Gender}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.Birthday}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.Address}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.Email}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.PhoneNumber}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.AcadamicYear}</td>
+                                        <td>
+                                            <div className="inline-flex px-2 items-center">
+                                                <Link to={`/Edit/${student.StudentID}`}><MdEdit className="text-2xl " /></Link>
+                                                <button className="px-5" type="button">< MdDeleteForever className="text-2xl " /></button>
+                                                <Link to={`/Detail/${student.StudentID}`}>< GrFormView className="text-3xl " /></Link>
+                                            </div>
+
+                                        </td>
+                                    </tr>):
+                                         students.map(student => (
+                                    <tr key={student.StudentID}>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.StudentID}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.StudentName}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.Gender}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.Birthday}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.Address}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.Email}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.PhoneNumber}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.AcadamicYear}</td>
+                                        <td>
+                                            <div className="inline-flex px-2 items-center">
+                                                <Link to={`/Edit/${student.StudentID}`}><MdEdit className="text-2xl " /></Link>
+                                                <button className="px-5" type="button">< MdDeleteForever className="text-2xl " /></button>
+                                                <Link to={`/Detail/${student.StudentID}`}>< GrFormView className="text-3xl " /></Link>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                ))
+                            
+                            }
+                        </tbody>
                     </table>
                 </div>
             </div>
+            
         </div>
     )
 }
