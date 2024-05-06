@@ -26,7 +26,7 @@ function App() {
 
   return (
      <div>  
-      <div class="flex">
+      <div class="flex ">
       <div>
         <div className={`p-8 h-dvh  bg-menu-color shadow-lg duration-700 ${open ? "w-60" : "w-20"}  relative`}>
           <div className="flex items-center justify-center h-16 bg-menu-color">
