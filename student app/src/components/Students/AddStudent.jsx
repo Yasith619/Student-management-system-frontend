@@ -86,17 +86,13 @@ function AddStudent() {
                             </div>
 
                             <div>
-                                <label className="block  text-gray-700  font-medium">Gender
-                                    <select className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block
-                                     focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" id="Gender"
-                                        onChange={(e) => {
-                                            setGender(e.target.value)
-                                        }}
-                                    >
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                    </select>
-                                </label>
+                                <label className="block  text-gray-700  font-medium">Gender </label>
+                                <input required id="Gender" type="text" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 
+                            block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Gender"
+                                    onChange={(e) => {
+                                        setGender(e.target.value)
+                                    }}
+                                />
 
 
                             </div>

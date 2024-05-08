@@ -26,12 +26,12 @@ function App() {
 
   return (
      <div>  
-      <div class="flex ">
+      <div className="flex ">
       <div>
         <div className={`p-8 h-dvh  bg-menu-color shadow-lg duration-700 ${open ? "w-60" : "w-20"}  relative`}>
           <div className="flex items-center justify-center h-16 bg-menu-color">
             <TfiMenuAlt className="text-menu-text-color absolute top-2 right-5 h-10 w-10 cursor-pointer" onClick={() => setOpen(!open)} />
-            <span class={`text-menu-text-color text-lg  font-semibold ${!open && "scale-0"}`}>Dashboard</span>
+            <span className={`text-menu-text-color text-lg  font-semibold ${!open && "scale-0"}`}>Dashboard</span>
           </div>
 
 
