@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 
 
+
 function EditStudent() {
 
 
@@ -72,7 +73,7 @@ function EditStudent() {
         <div className="m-5 w-full">
             <div className="p-9 rounded border items-center border-gray-200 w-full " >
                 <section className="mb-6">
-                    <h1 className="font-sans text-lg font-medium text-center">Edit Student Details </h1>
+                    <h1 className="font-sans text-lg font-medium text-center">Update Student Details </h1>
                 </section>
 
                 <form onSubmit={updateStudent} >
@@ -163,7 +164,7 @@ function EditStudent() {
                     <div className=" mt-6 flex justify-center">
                         <div>
                             <button className="py-2 px-8
-                 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50">Save</button>
+                 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50">Update</button>
                         </div>
                     </div>
                 </form>

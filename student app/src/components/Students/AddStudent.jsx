@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 
 
+
 function AddStudent() {
 
 
@@ -26,6 +27,7 @@ function AddStudent() {
 
     function sendData(e) {
         e.preventDefault();
+        
 
         const studentData = {
             StudentID,

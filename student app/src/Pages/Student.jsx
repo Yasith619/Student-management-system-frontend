@@ -6,6 +6,9 @@ import { MdEdit } from "react-icons/md";
 import { MdDeleteForever } from "react-icons/md";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import Swal from 'sweetalert2'
+
 
 
 
@@ -15,6 +18,7 @@ function Students() {
     const [students, setStudents] = useState([]);
     const [query, setQuery] = useState("")
     const [filteredItems, setFilteredItems] = useState([]);
+   
     
 
     useEffect(function () {
@@ -41,8 +45,31 @@ function Students() {
             setFilteredItems([])
         }
     }, [query]);
-  
-       
+
+//Delete student
+
+    function deleteStudent(StudentID) {
+        Swal.fire({
+            title: "Are you sure you want to delete this student?",
+            text: "You won't be able to revert this!",
+            showCancelButton: true,
+            confirmButtonColor: "#1e1b4b",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Delete"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:3000/Api/Students/delete/${StudentID}`)
+                    .then(function (res) {
+                        toast.success("Student delete Successfully!")
+                        console.log(res.data)
+                    }).catch(function (err) {
+                        console.log(err)
+                        toast.warning('Failed to delete student!')
+                    })
+            }
+        });
+    }
+
 
     return (
         <div >
@@ -101,7 +128,7 @@ function Students() {
                             <td>
                                 <div className="inline-flex px-2 items-center">
                                     <Link to={`/Edit/${student.StudentID}`}><MdEdit className="text-2xl" /></Link>
-                                    <button className="px-5" type="button"><MdDeleteForever className="text-2xl" /></button>
+                                    <button  onClick={()=>deleteStudent(student.StudentID)} className="px-3" type="button"><MdDeleteForever className="text-2xl" /></button>
                                     <Link to={`/Detail/${student.StudentID}`}><GrFormView className="text-3xl" /></Link>
                                 </div>
                             </td>
@@ -119,7 +146,7 @@ function Students() {
                                 <td>
                                     <div className="inline-flex px-1 items-center">
                                         <Link to={`/Edit/${student.StudentID}`}><MdEdit className="text-2xl" /></Link>
-                                        <button className="px-3" type="button"><MdDeleteForever className="text-2xl" /></button>
+                                        <button  onClick={()=>deleteStudent(student.StudentID)} className="px-3" type="button"><MdDeleteForever className="text-2xl" /></button>
                                         <Link to={`/Detail/${student.StudentID}`}><GrFormView className="text-3xl" /></Link>
                                     </div>
                                 </td>
@@ -137,4 +164,3 @@ function Students() {
     )
 }
 export default Students;
-//
