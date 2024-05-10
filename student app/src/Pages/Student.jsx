@@ -97,67 +97,67 @@ function Students() {
             </div>
 
             <div className="max-w-screen-xl mx-auto px-4 md:px-8">
-    <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">
-        
-        <div className="table-body" style={{ maxHeight: "420px", overflowY: "auto" }}>
-            <table className="w-full text-sm text-left">
-            <thead className="bg-gray-50 text-gray-600 font-medium border-b">
-                    <tr>
-                        <th className="py-3 px-6">StudentID</th>
-                        <th className="py-3 px-6">Student Name</th>
-                        <th className="py-3 px-6">Gender</th>
-                        <th className="py-3 px-6">Birthday</th>
-                        <th className="py-3 px-6">Address</th>
-                        <th className="py-3 px-6">Email</th>
-                        <th className="py-3 px-6">Phone Number</th>
-                        <th className="py-3 px-6">Academic Year</th>
-                        <th className="py-3 px-6">Action</th>
-                    </tr>
-                </thead>
-                <tbody className="text-gray-600 divide-y">
-                    {filteredItems.length > 0 ? filteredItems.map((student) =>
-                        <tr key={student.StudentID}>
-                            <td className="px-6 py-4 whitespace-nowrap">{student.StudentID}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{student.StudentName}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{student.Gender}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{student.Birthday}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{student.Address}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{student.Email}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{student.PhoneNumber}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{student.AcadamicYear}</td>
-                            <td>
-                                <div className="inline-flex px-2 items-center">
-                                    <Link to={`/Edit/${student.StudentID}`}><MdEdit className="text-2xl" /></Link>
-                                    <button  onClick={()=>deleteStudent(student.StudentID)} className="px-3" type="button"><MdDeleteForever className="text-2xl" /></button>
-                                    <Link to={`/Detail/${student.StudentID}`}><GrFormView className="text-3xl" /></Link>
-                                </div>
-                            </td>
-                        </tr>) :
-                        students.map(student => (
-                            <tr key={student.StudentID}>
-                                <td className="px-6 py-4 whitespace-nowrap">{student.StudentID}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{student.StudentName}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{student.Gender}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{student.Birthday}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{student.Address}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{student.Email}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{student.PhoneNumber}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{student.AcadamicYear}</td>
-                                <td>
-                                    <div className="inline-flex px-1 items-center">
-                                        <Link to={`/Edit/${student.StudentID}`}><MdEdit className="text-2xl" /></Link>
-                                        <button  onClick={()=>deleteStudent(student.StudentID)} className="px-3" type="button"><MdDeleteForever className="text-2xl" /></button>
-                                        <Link to={`/Detail/${student.StudentID}`}><GrFormView className="text-3xl" /></Link>
-                                    </div>
-                                </td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+                <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">
+
+                    <div className="table-body" style={{ maxHeight: "420px", overflowY: "auto" }}>
+                        <table className="w-full text-sm text-left">
+                            <thead className="bg-gray-50 text-gray-600 font-medium border-b">
+                                <tr>
+                                    <th className="py-3 px-6">StudentID</th>
+                                    <th className="py-3 px-6">Student Name</th>
+                                    <th className="py-3 px-6">Gender</th>
+                                    <th className="py-3 px-6">Birthday</th>
+                                    <th className="py-3 px-6">Address</th>
+                                    <th className="py-3 px-6">Email</th>
+                                    <th className="py-3 px-6">Phone Number</th>
+                                    <th className="py-3 px-6">Academic Year</th>
+                                    <th className="py-3 px-6">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody className="text-gray-600 divide-y">
+                                {filteredItems.length > 0 ? filteredItems.map((student) =>
+                                    <tr key={student.StudentID}>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.StudentID}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.StudentName}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.Gender}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.Birthday}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.Address}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.Email}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.PhoneNumber}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{student.AcadamicYear}</td>
+                                        <td>
+                                            <div className="inline-flex px-2 items-center">
+                                                <Link to={`/Edit/${student.StudentID}`}><MdEdit className="text-2xl" /></Link>
+                                                <button onClick={() => deleteStudent(student.StudentID)} className="px-3" type="button"><MdDeleteForever className="text-2xl" /></button>
+                                                <Link to={`/Detail/${student.StudentID}`}><GrFormView className="text-3xl" /></Link>
+                                            </div>
+                                        </td>
+                                    </tr>) :
+                                    students.map(student => (
+                                        <tr key={student.StudentID}>
+                                            <td className="px-6 py-4 whitespace-nowrap">{student.StudentID}</td>
+                                            <td className="px-6 py-4 whitespace-nowrap">{student.StudentName}</td>
+                                            <td className="px-6 py-4 whitespace-nowrap">{student.Gender}</td>
+                                            <td className="px-6 py-4 whitespace-nowrap">{student.Birthday}</td>
+                                            <td className="px-6 py-4 whitespace-nowrap">{student.Address}</td>
+                                            <td className="px-6 py-4 whitespace-nowrap">{student.Email}</td>
+                                            <td className="px-6 py-4 whitespace-nowrap">{student.PhoneNumber}</td>
+                                            <td className="px-6 py-4 whitespace-nowrap">{student.AcadamicYear}</td>
+                                            <td>
+                                                <div className="inline-flex px-1 items-center">
+                                                    <Link to={`/Edit/${student.StudentID}`}><MdEdit className="text-2xl" /></Link>
+                                                    <button onClick={() => deleteStudent(student.StudentID)} className="px-3" type="button"><MdDeleteForever className="text-2xl" /></button>
+                                                    <Link to={`/Detail/${student.StudentID}`}><GrFormView className="text-3xl" /></Link>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
  
                  
         </div>

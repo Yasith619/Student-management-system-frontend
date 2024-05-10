@@ -1,13 +1,20 @@
 import React from "react"
 import { Routes, Route, Link } from "react-router-dom";
 import Home from "./Pages/Home";
+
 import Students from "./Pages/Student";
-import Subjects from "./Pages/Subjects";
-import Semesters from "./Pages/Semesters";
-import Marks from "./Pages/Marks";
 import AddStudent from "./components/Students/AddStudent";
 import EditStudent from "./components/Students/EditStudent";
 import StudentDetail from "./components/Students/StudentDetail";
+
+import Marks from "./Pages/Marks";
+import AddMarks from "./components/Marks/AddMarks";
+import EditMarks from "./components/Marks/EditMarks";
+import MarksDetails from "./components/Marks/MarksDetails";
+
+import Subjects from "./Pages/Subjects";
+import Semesters from "./Pages/Semesters";
+
 import { TfiMenuAlt } from "react-icons/tfi";
 import { PiStudent } from "react-icons/pi";
 import { IoHomeOutline } from "react-icons/io5";
@@ -76,12 +83,18 @@ function App() {
       <Routes>
         <Route index element={<Home />}></Route>
         <Route path="/Students" element={<Students />}></Route>
-        <Route path="/Subjects" element={<Subjects />}></Route>
-        <Route path="/Semesters" element={<Semesters />}></Route>
-        <Route path="/Marks" element={<Marks />}></Route>
         <Route path="/AddStudent" element={<AddStudent />}></Route>
         <Route path="/Edit/:StudentID" element={< EditStudent/>}></Route>
-        <Route path="/Detail/:StudentID" element={<StudentDetail />}></Route> 
+        <Route path="/Detail/:StudentID" element={<StudentDetail />}></Route>
+
+        <Route path="/Marks" element={<Marks />}></Route>
+        <Route path="/AddStudentMarks" element={<AddMarks/>}></Route>
+        <Route path="/EditStudentMarks/:StudentID" element={<EditMarks/>}></Route>
+        <Route path="/ViewMarksDetails/:StudentID" element={<MarksDetails/>}></Route>
+
+        <Route path="/Subjects" element={<Subjects />}></Route>
+        <Route path="/Semesters" element={<Semesters />}></Route>
+         
       </Routes>
 
 
