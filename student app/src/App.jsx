@@ -90,7 +90,7 @@ function App() {
 
         <Route path="/Marks" element={<Marks />}></Route>
         <Route path="/AddStudentMarks" element={<AddMarks/>}></Route>
-        <Route path="/EditStudentMarks/:StudentID" element={<EditMarks/>}></Route>
+        <Route path="/EditStudentMarks/:ID/:StudentID" element={<EditMarks/>}></Route>
         <Route path="/ViewMarksDetails/:StudentID/:SemesterNO" element={<MarksDetails/>}></Route>
 
         <Route path="/Subjects" element={<Subjects />}></Route>

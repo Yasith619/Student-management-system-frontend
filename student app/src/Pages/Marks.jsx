@@ -106,7 +106,7 @@ useEffect(function(){
                                             <td className="px-6 py-4 whitespace-nowrap">{mark.Grade}</td>
                                             <td>
                                                 <div className="inline-flex px-2 items-center">
-                                                <Link to={`/EditStudentMarks/${mark.StudentID}`}><MdEdit className="text-2xl" /></Link>
+                                                <Link to={`/EditStudentMarks/${mark.ID}`}><MdEdit className="text-2xl" /></Link>
                                                     <button className="px-3" type="button"><MdDeleteForever className="text-2xl" /></button>
                                                     <Link to={`/ViewMarksDetails/${mark.StudentID}/${mark.SemesterNO}`}><GrFormView className="text-3xl" /></Link>
                                                 </div>
@@ -124,7 +124,7 @@ useEffect(function(){
 
                                             <td>
                                                 <div className="inline-flex px-1 items-center">
-                                                    <Link to={`/EditStudentMarks/${mark.StudentID}`}><MdEdit className="text-2xl" /></Link>
+                                                    <Link to={`/EditStudentMarks/${mark.ID}/${mark.StudentID}`}><MdEdit className="text-2xl" /></Link>
                                                     <button className="px-3" type="button"><MdDeleteForever className="text-2xl" /></button>
                                                     <Link to={`/ViewMarksDetails/${mark.StudentID}/${mark.SemesterNO}`}><GrFormView className="text-3xl" /></Link>
                                                 </div>

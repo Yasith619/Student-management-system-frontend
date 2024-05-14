@@ -62,7 +62,7 @@ function EditStudent() {
 
             }).catch(function (error) {
                 console.log(error)
-                alert('Student canot add !')
+               // alert('Student canot add !')
                 toast.warning('Student canot update!')
             })
     }
