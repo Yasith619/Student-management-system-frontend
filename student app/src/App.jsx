@@ -52,6 +52,12 @@ function App() {
               <PiStudent className="text-menu-text-color text-3xl " />
               <Link to="/Students" className={`block py-1 px-6 rounded-md hover:bg-m-h-color  text-menu-text-color  ${!open && "scale-0"}`}>STUDENTS</Link>
             </div>
+
+            <div className="inline-flex items-center">
+              <VscGraph className="text-menu-text-color text-3xl block float-left" />
+              <Link to="/Marks" className={`block py-1 px-6 rounded-md hover:bg-m-h-color  text-menu-text-color  ${!open && "scale-0"}`}>MARKS</Link>
+            </div>
+
             <div className="inline-flex items-center">
               <RiCalendarEventLine className="text-menu-text-color text-3xl block float-left" />
               <Link to="/Semesters" className={`block py-1 px-6 rounded-md hover:bg-m-h-color  text-menu-text-color  ${!open && "scale-0"}`}>SEMESTER</Link>
@@ -60,11 +66,6 @@ function App() {
             <div className="inline-flex items-center">
               <LuGraduationCap  className="text-menu-text-color text-3xl block float-left" />
               <Link to="/Subjects" className={`block py-1 px-6 rounded-md hover:bg-m-h-color  text-menu-text-color  ${!open && "scale-0"}`}>SUBJECTS</Link>
-            </div>
-
-            <div className="inline-flex items-center">
-              <VscGraph className="text-menu-text-color text-3xl block float-left" />
-              <Link to="/Marks" className={`block py-1 px-6 rounded-md hover:bg-m-h-color  text-menu-text-color  ${!open && "scale-0"}`}>MARKS</Link>
             </div>
 
             <div className="inline-flex items-center">
@@ -90,7 +91,7 @@ function App() {
         <Route path="/Marks" element={<Marks />}></Route>
         <Route path="/AddStudentMarks" element={<AddMarks/>}></Route>
         <Route path="/EditStudentMarks/:StudentID" element={<EditMarks/>}></Route>
-        <Route path="/ViewMarksDetails/:StudentID" element={<MarksDetails/>}></Route>
+        <Route path="/ViewMarksDetails/:StudentID/:SemesterNO" element={<MarksDetails/>}></Route>
 
         <Route path="/Subjects" element={<Subjects />}></Route>
         <Route path="/Semesters" element={<Semesters />}></Route>

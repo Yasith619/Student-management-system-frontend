@@ -7,9 +7,10 @@ import { useParams } from "react-router-dom";
 
 function StudentDetail(){
 
-    let {StudentID}=useParams()
+let {StudentID}=useParams()
 
 const[studentDetails,setStudentDetails]=useState([]);
+const [marks, setMarks] = useState([])
 
     useEffect(function () {
 
@@ -26,100 +27,73 @@ const[studentDetails,setStudentDetails]=useState([]);
 
     }, [])        
 
+    useEffect(function(){
+        function getMarks() {
+            axios.get(`http://localhost:3000/Api/Marks/get/${StudentID}`)
+                .then(function (res) {
+                    setMarks(res.data.Data)
+                    console.log('successfully Marks!')
+                    console.log(res.data.Data)
+                }).catch(function (err) {
+                    console.log(err)
+                })
+        }
+        getMarks();
+    },[])
 
 
 
     return (
-        <div className="p-2">
+        <div className="p-2 inline-flex space-x-4" >
 
             {
-                setStudentDetails.length ? studentDetails.map((studentDetail) => (
-
-                    <div class="bg-white max-w-2xl shadow overflow-hidden sm:rounded-lg">
-                        <div class="px-4 py-5 sm:px-6">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900">
-                               Student Details
-                            </h3>
-                            <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                                Details and informations about Student.
-                            </p>
-                        </div>
-                        <div class="border-t border-gray-200">
-                            <dl>
-                                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                    <dt class="text-sm font-medium text-gray-500">
-                                    Academic Year
-                                    </dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    {studentDetail.AcadamicYear}
-                                    </dd>
-                                </div>
-                                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                    <dt class="text-sm font-medium text-gray-500">
-                                    Student ID
-                                    </dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    {studentDetail.StudentID}
-                                    </dd>
-                                </div>
-                                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                    <dt class="text-sm font-medium text-gray-500">
-                                    Student Name
-                                    </dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    {studentDetail.StudentName}
-                                    </dd>
-                                </div>
-                                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                    <dt class="text-sm font-medium text-gray-500">
-                                    Gender 
-                                    </dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    {studentDetail.Gender}
-                                    </dd>
-                                </div>
-                                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                    <dt class="text-sm font-medium text-gray-500">
-                                    Birthday
-                                    </dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    {studentDetail.Birthday}
-                                    </dd>
-                                </div>
-                                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                    <dt class="text-sm font-medium text-gray-500">
-                                    Address
-                                    </dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    {studentDetail.Address}
-                                    </dd>
-                                </div>
-                                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                    <dt class="text-sm font-medium text-gray-500">
-                                    Email Address
-                                    </dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    {studentDetail.Email}
-                                    </dd>
-                                </div>
-                                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                    <dt class="text-sm font-medium text-gray-500">
-                                    Phone Number
-                                    </dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    {studentDetail.PhoneNumber}
-                                    </dd>
-                                </div>
-                                
-                            </dl>
-                        </div>
+                    studentDetails.map((studentDetail) => (
+                    
+                   
+                    <div class="bg-white rounded-lg shadow-lg p-6 max-w-xl mx-auto">
+                       
+                        <div class="border-b-2 border-gray-300 pb-8 mb-8 ">
+                            <h2 className="text-2xl font-bold mb-4">Student Details</h2>
+                            
+                            <div class="text-gray-700 mb-4 text-m leading-6 font-medium">Academic Year : {studentDetail.AcadamicYear}</div>
+                            <div class="text-gray-700 mb-4 text-m leading-6 font-medium">Student ID : {studentDetail.StudentID}</div>
+                            <div class="text-gray-700 mb-4 text-m leading-6 font-medium">Student Name : {studentDetail.StudentName}</div>
+                            <div class="text-gray-700 mb-4 text-m leading-6 font-medium">Gender : {studentDetail.Gender}</div>
+                            <div class="text-gray-700 mb-4 text-m leading-6 font-medium">Birthday : {studentDetail.Birthday}</div>
+                            <div class="text-gray-700 mb-4 text-m leading-6 font-medium">Address : {studentDetail.Address}</div>
+                            <div class="text-gray-700 mb-4 text-m leading-6 font-medium">Email : {studentDetail.Email}</div>
+                            <div class="text-gray-700 mb-4 text-m leading-6 font-medium">Phone Number : {studentDetail.PhoneNumber}</div>
+                            
+                            
+                        </div>   
                     </div>
-                )) : (
-                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            no data
-                        </div>
-                )
+                )) 
             }
+            <div className="bg-white rounded-lg shadow-lg p-4 max-w-xl mx-auto">
+            <h2 className="text-2xl font-bold mb-4">Mark Sheet</h2>
+                {
+                    <table>
+                    <thead className="bg-gray-50 text-gray-600 font-medium border-b">
+                        <tr>
+                        <th className="py-3 px-6">Semester No</th>
+                            <th className="py-3 px-6">Subject ID</th>
+                            <th className="py-3 px-6">Mark</th>
+                            <th className="py-3 px-6">Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody className="text-gray-600 divide-y">
+                        {marks.map((mark) =>
+                            <tr key={mark.ID} >
+                                 <td className="px-6 py-4 whitespace-nowrap">{mark.SemesterNO}</td>
+                                <td className="px-6 py-4 whitespace-nowrap">{mark.SubjectID}</td>
+                                <td className="px-6 py-4 whitespace-nowrap">{mark.Mark}</td>
+                                <td className="px-6 py-4 whitespace-nowrap">{mark.Grade}</td>
+                            </tr>)
+                        }
+                    </tbody>
+                </table>
+                }
+            </div>
 
         </div>
 

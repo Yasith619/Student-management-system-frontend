@@ -16,10 +16,11 @@ function Students() {
 
 
     const [students, setStudents] = useState([]);
-    const [query, setQuery] = useState("")
+    const [search, setSearch] = useState("")
     const [filteredItems, setFilteredItems] = useState([]);
    
     
+//get student list from backend
 
     useEffect(function () {
         function getStudentsList() {
@@ -34,19 +35,22 @@ function Students() {
         getStudentsList()
     }, []);
 
-//filter by name
+//filter a student by name and id
+
     useEffect(function () {
-        if (query.length) {
-            const filterUsers = students.filter((student) => {
-                return (student.StudentName).toLowerCase().includes(query.toLowerCase());
+        if (search.length ) {
+            const filterStudents = students.filter((student) => {
+                const StudentName=student.StudentName ? student.StudentName.toLowerCase():''
+                const StudentID=student.StudentID ? student.StudentID.toString().toLowerCase():''
+                return (StudentName.includes(search.toLowerCase()) || StudentID.includes(search.toLowerCase()))
             });
-            setFilteredItems(filterUsers)
+            setFilteredItems(filterStudents)
         } else {
             setFilteredItems([])
         }
-    }, [query]);
+    }, [search]);
 
-//Delete student
+//Delete a student
 
     function deleteStudent(StudentID) {
         Swal.fire({
@@ -86,10 +90,10 @@ function Students() {
                 </div>
                 <div className="inline-flex items-center">
                     <div className="inline-flex space-x-2 items-center">
-                        <input type="search" placeholder="  Search Student Name"
+                        <input type="search" placeholder=" Student Name /ID"
                             className="px-3 border-2 rounded-full border-neutral-500 "
                             onChange={(e)=>{
-                                setQuery(e.target.value)
+                                setSearch(e.target.value)
                             }}
                         />
                     </div>
@@ -101,7 +105,7 @@ function Students() {
 
                     <div className="table-body" style={{ maxHeight: "420px", overflowY: "auto" }}>
                         <table className="w-full text-sm text-left">
-                            <thead className="bg-gray-50 text-gray-600 font-medium border-b">
+                            <thead className="bg-gray-50 text-gray-600 font-medium border-b ">
                                 <tr>
                                     <th className="py-3 px-6">StudentID</th>
                                     <th className="py-3 px-6">Student Name</th>

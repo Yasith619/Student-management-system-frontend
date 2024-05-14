@@ -23,7 +23,7 @@ function AddMarks() {
         Mark,
         Grade
     }
-
+//add student to database
     function addMarks(e) {
         e.preventDefault();
         axios.post('http://localhost:3000/Api/Marks/add', StudentMarks)
